@@ -1,0 +1,96 @@
+.popup {
+    transition: .5s all ease-in-out;
+    scale: 0;
+    opacity: 0;
+    position: fixed;
+    z-index: 500;
+    height: 80vh;
+    width: 80vw;
+    top: 10vh;
+    align-self: center;
+justify-self: center;
+    align-content: center;
+justify-content: center;
+    align-items: center;
+justify-items: center;
+    background-color: rgba(250, 250, 250, 0.9);
+    border-radius: 25px;
+    border: 1px solid gray;
+}
+
+.popup>.closePopup {
+    height: 5vh;
+    width: 5vh;
+    position: absolute;
+    top: 1vw;
+    right: 1vw;
+    color: red;
+    border-radius: 25px;
+    background-color: rgba(0, 0, 0, 0.2);
+    align-self: start;
+justify-self: start;
+    align-content: center;
+justify-content: center;
+    text-align: center;
+    align-items: start;
+justify-items: start;
+}
+
+.popup>.answers>.cancelPopup,
+.popup>.answers>.okPopup,
+.popup>.closePopup,
+.questionPage>.choices>.choice {
+    cursor: pointer;
+}
+
+.popup>.answers {
+    display: flex;
+    flex-direction: row;
+    position: absolute;
+    bottom: 10vh;
+    width: 23vw;
+    height: 5vh;
+    align-self: center;
+justify-self: center;
+    align-content: center;
+justify-content: center;
+}
+.popup>.answers>div {
+    margin: 1vw;
+    width: 10vw;
+    height: 100%;
+    font-size: larger;
+    text-align: center;
+    align-content: center;
+    color: white;
+    border-radius: 5px;
+    
+}
+.popup>.answers>.okPopup {
+    background-color: green;
+}
+.popup>.answers>.cancelPopup {
+    background-color: red;
+}
+
+.popup>.popupTitle {
+    position: absolute;
+    top: 5vh;
+    color: red;
+}
+
+.popup>.popupContent {
+    font-size: xx-large;
+    text-align: center;
+}
+
+.quizzes {
+    align-self: center;
+justify-self: center;
+    align-items: center;
+justify-items: center;
+    align-content: center;
+justify-content: center;
+    height: 100%;
+    width: 100%;
+}

@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <title>مؤسس المسابقات التّربويّة</title>
     <link rel="shortcut icon" href="./assets/styles/logo.png" type="image/x-icon">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./assets/styles/index.css">
     <link rel="stylesheet" href="./assets/styles/popup.css">
 
@@ -24,11 +25,14 @@
 
     <div class="section">
         <h3>📂 إدارة الملفات</h3>
-        <button class="btn-upload" onclick="validateAndUpload()">☁️ حفظ المسابقة النّهائيّة</button>
-        <button class="btn-export" onclick="validateAndDownload()">💾 تحميل ملف JSON النهائي</button>
-        <button style="background:#6c757d; color:white;" onclick="document.getElementById('fileInput').click()">📥 رفع
-            ملف JSON لتعديله</button>
-        <input type="file" id="fileInput" style="display:none" accept=".json" onchange="importJSON(event)">
+        <div class="btns">
+            <button class="btn-upload" onclick="validateAndUpload()">☁️ حفظ المسابقة النّهائيّة</button>
+            <button class="btn-export" onclick="validateAndDownload()">💾 تحميل ملف JSON النهائي</button>
+            <button style="background:#6c757d; color:white;" onclick="document.getElementById('fileInput').click()">📥
+                رفع
+                ملف JSON لتعديله</button>
+            <input type="file" id="fileInput" style="display:none" accept=".json" onchange="importJSON(event)">
+        </div>
     </div>
 
     <div class="section">

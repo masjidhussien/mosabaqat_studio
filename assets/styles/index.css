@@ -268,3 +268,24 @@ button {
 .qNumberPreview:nth-child(even) {
     background-color: var(--question-button-color2);
 }
+
+@media (max-width:800px) {
+    .btns {
+        display: flex;
+        flex-direction: row;
+    }
+    .btns > button {
+        margin: 1vh;
+    }
+    .choices {
+    display: flex;
+    flex-direction: column;
+ }   
+ .list-controls {
+    max-width: 100%;
+ }
+ #searchInput {
+    height: 6vh;
+    width: 40vw;
+ }
+}

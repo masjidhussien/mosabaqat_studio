@@ -6,6 +6,9 @@
     <title>مؤسس المسابقات التّربويّة</title>
     <link rel="shortcut icon" href="./assets/styles/logo.png" type="image/x-icon">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./assets/styles/index.css">
     <link rel="stylesheet" href="./assets/styles/popup.css">
 
@@ -21,87 +24,107 @@
             <div class="okPopup">نعم</div>
         </div>
     </div>
-    <h2>مؤسس المسابقات التّربويّة</h2>
-
-    <div class="section">
-        <h3>📂 إدارة الملفات</h3>
-        <div class="btns">
-            <button class="btn-upload" onclick="validateAndUpload()">☁️ حفظ المسابقة النّهائيّة</button>
-            <button class="btn-export" onclick="validateAndDownload()">💾 تحميل ملف JSON النهائي</button>
-            <button style="background:#6c757d; color:white;" onclick="document.getElementById('fileInput').click()">📥
-                رفع
-                ملف JSON لتعديله</button>
-            <input type="file" id="fileInput" style="display:none" accept=".json" onchange="importJSON(event)">
-        </div>
+    <div id="login-section">
+        <h2>سجّل الدخول لتصل إلى الصفحة</h2>
+        <input type="email" id="email" placeholder="البريد الإلكتروني">
+        <input type="password" id="password" placeholder="كلمة المرور">
+        <button id="email-login">تسجيل الدخول</button>
     </div>
 
-    <div class="section">
-        <h3>📚 اسم النّشاط</h3>
-        <div style="display:flex; flex-direction: column; gap:10px;">
-            <div style="display:flex; gap:10px;">
-                <select id="nashatSelect" style="flex:1; padding:10px; border-radius:5px;"
-                    onchange="toggleNashatInput(this.value)">
-                    <option value="new">➕ إنشاء نشاط جديد...</option>
-                </select>
-                <button type="button" id="checkIdBtn" onclick="checkIdExists()"
-                    style="background:#ffc107; color:#212529;">🔍 فحص التوفر</button>
-                <button type="button" id="deleteBtn" onclick="deleteExistingQuiz()"
-                    style="background:#dc3545; color:white; display:none;">🗑️ حذف النشاط</button>
+    <div class="content hidden">
+        <h2>مؤسس المسابقات التّربويّة</h2>
+        <div class="sections">
+
+            <div class="right">
+                <div class="section">
+                    <h3>👤 بياناتك</h3>
+                    <span>سجّلت الدّخول بـ</span><span class="emailValue"></span>
+                    <br>
+                    <button class="btn-clear" id="logout">تسجيل الخروج</button>
+                </div>
+
+                <div class="section">
+                    <h3>📚 اسم النّشاط</h3>
+                    <div style="display:flex; flex-direction: column; gap:10px;">
+                        <div style="display:flex; gap:10px;">
+                            <select id="nashatSelect" style="flex:1; padding:10px; border-radius:5px;"
+                                onchange="toggleNashatInput(this.value)">
+                                <option value="new">➕ إنشاء نشاط جديد...</option>
+                            </select>
+                            <button type="button" id="checkIdBtn" onclick="checkIdExists()"
+                                style="background:#ffc107; color:#212529;">🔍 فحص التوفر</button>
+                            <button type="button" id="deleteBtn" onclick="deleteExistingQuiz()"
+                                style="background:#dc3545; color:white; display:none;">🗑️ حذف النشاط</button>
+                        </div>
+                        <input type="text" id="nashatInput" placeholder="أدخل اسم النشاط الجديد هنا..."
+                            oninput="nashat(event)">
+                    </div>
+                    <span id="idStatus" style="font-size: 0.8rem; margin-top: 5px; display: block;"></span>
+                </div>
+                <div class="section">
+                    <h3>📂 إدارة الملفات</h3>
+                    <div class="btns">
+                        <button class="btn-upload" onclick="validateAndUpload()">☁️ حفظ المسابقة النّهائيّة</button>
+                        <button class="btn-export" onclick="validateAndDownload()">💾 تحميل ملف JSON النهائي</button>
+                        <button onclick="document.getElementById('fileInput').click()">📥
+                            رفع
+                            ملف JSON لتعديله</button>
+                        <input type="file" id="fileInput" style="display:none" accept=".json"
+                            onchange="importJSON(event)">
+                    </div>
+                </div>
+
+                <div class="section">
+                    <h3>🎨 الألوان</h3>
+                    <div class="grid" id="colorPickerContainer"></div>
+                    <h3>🖼 الصور</h3>
+                    <div class="grid" id="imageContainer"></div>
+                </div>
             </div>
-            <input type="text" id="nashatInput" placeholder="أدخل اسم النشاط الجديد هنا..." oninput="nashat(event)">
-        </div>
-        <span id="idStatus" style="font-size: 0.8rem; margin-top: 5px; display: block;"></span>
-    </div>
+            <div class="left">
 
-    <div class="section" style="background: #f8f0ff;">
-        <h3>🎯 جلب سؤال عشوائي</h3>
-        <div style="display:flex; gap:10px; align-items:center; flex-wrap: wrap;">
-            <select id="category" style="padding:8px; border-radius: 5px; border: 1px solid #ccc;"></select>
-            <select id="level" style="padding:8px; border-radius: 5px; border: 1px solid #ccc;">
-                <option value="level1">المستوى 1</option>
-                <option value="level2">المستوى 2</option>
-                <option value="level3">المستوى 3</option>
-            </select>
-            <button class="btn-api" onclick="fetchRandom()">جلب سؤال عشوائي</button>
-        </div>
-    </div>
 
-    <div class="section">
-        <h3>❓ قائمة الأسئلة</h3>
-        <div class="list-controls">
-            <input type="text" id="searchInput" class="search-input" placeholder="بحث في الأسئلة..."
-                oninput="filterQuestions()">
-            <span class="counter" id="qCounter">عدد الأسئلة: 0</span>
-            <button class="btn-clear" onclick="clearAllQuestions()">🗑 مسح الكل</button>
-        </div>
-        <div id="questionsContainer"></div>
-        <button class="btn-add" onclick="addQuestion()">➕ إضافة سؤال يدوي</button>
-    </div>
-    <div class="section">
-        <h3>🖼 الصور</h3>
-        <div class="grid" id="imageContainer"></div>
-    </div>
+                <div class="section">
+                    <h3>👁 معاينة قائمة الأرقام (الصفحة الرئيسية)</h3>
+                    <div class="gridPreviewBox">
+                        <div class="questionsGridPreview" id="pGrid">
+                        </div>
+                    </div>
+                </div>
 
-    <div class="section">
-        <h3>🎨 الألوان</h3>
-        <div class="grid" id="colorPickerContainer"></div>
-    </div>
-    <div class="section">
-        <h3>👁 معاينة قائمة الأرقام (الصفحة الرئيسية)</h3>
-        <div class="gridPreviewBox">
-            <div class="questionsGridPreview" id="pGrid">
+                <div class="section">
+                    <h3>👁 معاينة صفحة السؤال</h3>
+                    <div class="previewBox">
+                        <h2 id="pQ">نص السؤال</h2>
+                        <div id="pChoices"></div>
+                    </div>
+                </div>
+                <div class="section">
+                    <h3>❓ قائمة الأسئلة</h3>
+                    <div class="list-controls">
+                        <input type="text" id="searchInput" class="search-input" placeholder="بحث في الأسئلة..."
+                            oninput="filterQuestions()">
+                        <span class="counter" id="qCounter">عدد الأسئلة: 0</span>
+                        <button class="btn-clear" onclick="clearAllQuestions()">🗑 مسح الكل</button>
+                    </div>
+
+                    <div id="questionsContainer"></div>
+                    <div style="display:flex; gap:10px; align-items:center; flex-wrap: wrap;">
+                        <button class="btn-add" onclick="addQuestion()">➕ إضافة سؤال يدوي</button>
+                        <select id="category" style="padding:8px; border-radius: 5px; border: 1px solid #ccc;"></select>
+                        <select id="level" style="padding:8px; border-radius: 5px; border: 1px solid #ccc;">
+                            <option value="level1">المستوى 1</option>
+                            <option value="level2">المستوى 2</option>
+                            <option value="level3">المستوى 3</option>
+                        </select>
+                        <button class="btn-api" onclick="fetchRandom()">جلب سؤال عشوائي</button>
+                    </div>
+                </div>
             </div>
-        </div>
-    </div>
-
-    <div class="section">
-        <h3>👁 معاينة صفحة السؤال</h3>
-        <div class="previewBox">
-            <h2 id="pQ">نص السؤال</h2>
-            <div id="pChoices"></div>
         </div>
     </div>
     <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
     <script type="module" src="./lib/config.js"></script>
     <script src="./lib/showPopup.js"></script>

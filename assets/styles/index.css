@@ -1,31 +1,30 @@
-:root {
-    --question-button-color1: #fa0000;
-    --question-button-color1-chosen: #c80000;
-    --question-button-color2: #009600;
-    --question-button-color2-chosen: #006400;
-    --question-button-font-color: #f5deb3;
-    --question-button-font-color-chosen: #deb887;
-    --question-page-background-color: #13546d;
-    --question-page-option-color: #ffa600;
-    --question-page-font-color: #ffffff;
+@font-face {
+    font-family: "Lyon Arabic Text";
+    src: url(../font.otf);
 }
 
 :root {
+    /* DEFAULT VALUES */
+    --question-button-color1: #fa0000;
+    --question-button-color1-chosen: color-mix(in srgb, var(--question-button-color1), black 20%);
+    --question-button-color2: #009600;
+    --question-button-color2-chosen: color-mix(in srgb, var(--question-button-color2), black 20%);
+    --question-button-font-color: #f5deb3;
+    --question-button-font-color-chosen: color-mix(in srgb, var(--question-button-font-color), black 20%);
+    --question-page-background-color: #13546d;
+    --question-page-option-color: #ffa600;
+    --question-page-font-color: #ffffff;
+
+    /* UI VALUES */
     --primary: #2c3e50;
     --secondary: #27ae60;
     --danger: #d93025;
     --background: #f4f7f6;
     --surface: #ffffff;
+    --surface-border: #cccccc;
     --text-main: #333333;
     --radius-md: 12px;
     --shadow-lg: 0 10px 30px rgba(0, 0, 0, 0.1);
-}
-
-
-
-@font-face {
-    font-family: "Lyon Arabic Text";
-    src: url(../font.otf);
 }
 
 * {
@@ -34,21 +33,20 @@
     box-sizing: border-box;
 }
 
-
 body {
     margin: 0;
     padding: 0 20px;
-    background: #f0f2f5;
-    color: #333;
+    background: var(--background);
+    color: var(--text-main);
 }
 
 .section {
-    background: white;
+    background: var(--surface);
     border-radius: 12px;
     padding: 20px;
     margin-bottom: 20px;
-    border: 1px solid #ddd;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    border: 1px solid var(--surface-border);
+    box-shadow: var(--shadow-lg);
 }
 
 .grid {
@@ -62,10 +60,10 @@ body {
 }
 
 .question {
-    border: 1px solid #ccc;
+    border: 1px solid var(--surface-border);
     border-radius: 8px;
     padding: 15px;
-    background: #fff;
+    background: var(--surface);
     margin-bottom: 15px;
     position: relative;
     transition: all 0.3s;
@@ -78,7 +76,7 @@ body {
     top: -10px;
     right: -10px;
     background: #007bff;
-    color: white;
+    color: var(--surface);
     width: 28px;
     height: 28px;
     border-radius: 50%;
@@ -86,29 +84,28 @@ body {
     align-items: center;
     justify-content: center;
     font-weight: bold;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    box-shadow: var(--shadow-lg);
 }
 
 .qText,
 #nashatInput {
+    background: var(--background);
     width: 100%;
     padding: 10px;
     margin: 10px 0;
-    border: 1px solid #ddd;
+    border: 1px solid var(--background);
     border-radius: 5px;
     font-size: 1rem;
 }
 
 #nashatInput {
     display: block;
-    /* Default state matches "new" */
 }
-#checkIdBtn {
-    width: 20%;
-}
+
 #nashatSelect {
     width: 80%;
 }
+
 .choices {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -119,15 +116,15 @@ body {
     display: flex;
     align-items: center;
     gap: 8px;
-    background: #f8f9fa;
+    background: var(--background);
     padding: 8px;
     border-radius: 5px;
-    border: 1px solid #eee;
+    border: 1px solid var(--surface-border);
 }
 
 .choices input[type="text"] {
     flex: 1;
-    border: 1px solid #ccc;
+    border: 1px solid var(--surface-border);
     padding: 5px;
     border-radius: 3px;
 }
@@ -197,6 +194,10 @@ button:active {
     color: #28a745 !important;
 }
 
+.btn-upload {
+    width: 100%;
+}
+
 .btn-api {
     background: #6f42c1;
     color: white;
@@ -245,7 +246,7 @@ button:active {
     gap: 10px;
     margin-bottom: 15px;
     align-items: center;
-    background: #f8f9fa;
+    background: var(--background);
     padding: 10px;
     border-radius: 8px;
 }
@@ -451,4 +452,131 @@ button:active {
 
 .hidden {
     display: none !important;
+}
+
+.options {
+    place-self: center;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+}
+
+.option {
+    background: #f8f9fa;
+    padding: 10px 15px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    transition: 0.2s ease;
+}
+
+.option input[type="checkbox"] {
+    margin-right: 10px;
+    transform: scale(1.2);
+}
+
+.option input[type="number"] {
+    border: none;
+    outline: none;
+    background: #ffffff;
+    padding: 10px 15px;
+    border-radius: 8px;
+    flex: 1;
+    font-size: 14px;
+    width: 90%;
+}
+
+.option label {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    cursor: pointer;
+    font-size: 14px;
+    align-items: flex-start;
+}
+
+#tpq,
+#tqt,
+#ttr {
+    flex-direction: column;
+}
+
+#tpq label,
+#tqt label,
+#ttr label {
+    width: 100%;
+    padding: 3%;
+}
+
+input[type="checkbox"] {
+    appearance: none;
+    -webkit-appearance: none;
+    /* Perfect Square for symmetry */
+    width: 22px;
+    height: 22px;
+    border-radius: 6px;
+    border: 2px solid #d1d5db;
+    cursor: pointer;
+    position: relative;
+    background-color: #fff;
+    outline: none;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    /* Ensure it doesn't shrink in flex layouts */
+    flex-shrink: 0;
+}
+
+input[type="checkbox"]:checked {
+    background: #10b981;
+    border-color: #10b981;
+    transform: scale(1.05);
+}
+
+input[type="checkbox"]:checked::after {
+    content: "";
+    position: absolute;
+    /* Centering the 5x10 checkmark in a 22x22 box */
+    left: 7px;
+    top: 3px;
+    width: 5px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 2.5px 2.5px 0;
+    transform: rotate(45deg);
+    animation: check-draw 0.15s ease-out forwards;
+}
+
+@keyframes check-draw {
+    0% {
+        opacity: 0;
+        transform: rotate(45deg) scale(0.5);
+    }
+
+    100% {
+        opacity: 1;
+        transform: rotate(45deg) scale(1);
+    }
+}
+
+#logos {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    text-align: center;
+    place-self: center;
+    width: 100%;
+}
+
+#deleteBtn {
+    width: 20%;
+    text-align: center;
+    margin: 0;
+    padding: 10px 2px;
+}
+
+.option-group label {
+    margin: 0;
+    margin-bottom: 5px;
+    padding: 0;
+    place-content: center
 }

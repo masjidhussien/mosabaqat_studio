@@ -15,7 +15,7 @@
 </head>
 
 <body>
-    <div class="popup">
+    <div class="popup hidden">
         <div class="closePopup">X</div>
         <h1 class="popupTitle">تحذير!</h1>
         <div class="popupContent">اِختر أسماءً للفرق!</div>
@@ -31,7 +31,7 @@
         <button id="email-login">تسجيل الدخول</button>
     </div>
 
-    <div class="content hidden">
+    <div class="content">
         <h2>مؤسس المسابقات التّربويّة</h2>
         <div class="sections">
             <div class="right">
@@ -50,20 +50,67 @@
                                 onchange="toggleNashatInput(this.value)">
                                 <option value="new">➕ إنشاء نشاط جديد...</option>
                             </select>
-                            <button type="button" id="checkIdBtn" onclick="checkIdExists()"
-                                style="background:#ffc107; color:#212529;">🔍 فحص التوفر</button>
-                            <button type="button" id="deleteBtn" onclick="deleteExistingQuiz()"
-                                style="background:#dc3545; color:white; display:none;">🗑️ حذف النشاط</button>
+                            <button style="display: none;" type="button" class="btn-del" id="deleteBtn" onclick="deleteExistingQuiz()">🗑️ حذف
+                                النشاط</button>
                         </div>
-                        <input type="text" id="nashatInput" placeholder="أدخل اسم النشاط الجديد هنا..."
-                            oninput="nashat(event)">
+                        <div>
+
+                            <input type="text" id="nashatInput" placeholder="أدخل اسم النشاط الجديد هنا..."
+                                oninput="nashat(event)">
+                            <span id="idStatus" style="font-size: 0.8rem; margin-top: 5px; display: block;"></span>
+                        </div>
+                        <button class="btn-upload" onclick="validateAndUpload()">☁️ حفظ المسابقة النّهائيّة</button>
                     </div>
-                    <span id="idStatus" style="font-size: 0.8rem; margin-top: 5px; display: block;"></span>
+                </div>
+                <div class="section">
+                    <h3>⚙️ إعدادات المسابقة المتقدّمة</h3>
+                    <div class="options">
+                        <div class="option" id="teams">
+                            <label for="use-teams">اعتماد نظام الفريقين</label>
+                            <input type="checkbox" checked id="use-teams">
+                        </div>
+                        <div class="option" id="logos">
+                            اظهار شعار
+                            <div class="option-group">
+                                <label for="show-masjid-logo">المسجد</label>
+                                <input type="checkbox" checked id="show-masjid-logo">
+                            </div>
+
+                            <div class="option-group">
+                                <label for="show-dept-logo">القسم</label>
+                                <input type="checkbox" checked id="show-dept-logo">
+                            </div>
+
+                            <div class="option-group">
+                                <label for="show-activity-logo">النشاط</label>
+                                <input type="checkbox" checked id="show-activity-logo">
+                            </div>
+                        </div>
+                        <div class="option" id="tpq">
+                            <label for="time-per-question">الوقت للسؤال الواحد (ث)</label>
+                            <input type="number" min="0" value="45" id="time-per-question" placeholder="أدخل الوقت بالثواني">
+                        </div>
+
+                        <div class="option" id="tqt">
+                            <label for="tranferable-question-time">الوقت للسؤال بعد نقله (ث)</label>
+                            <input type="number" min="0" value="10" id="tranferable-question-time" placeholder="أدخل الوقت بالثواني">
+                        </div>
+
+                        <div class="option" id="ttr">
+                            <label for="time-to-return">الوقت للرجوع بعد إظهار الإجابة (ث)</label>
+                            <input type="number" min="0" value="3" id="time-to-return" placeholder="أدخل الوقت بالثواني">
+                        </div>
+                    </div>
+                </div>
+                <div class="section">
+                    <h3>🎨 الألوان</h3>
+                    <div class="grid" id="colorPickerContainer"></div>
+                    <h3>🖼 الصور</h3>
+                    <div class="grid" id="imageContainer"></div>
                 </div>
                 <div class="section">
                     <h3>📂 إدارة الملفات</h3>
                     <div class="btns">
-                        <button class="btn-upload" onclick="validateAndUpload()">☁️ حفظ المسابقة النّهائيّة</button>
                         <button class="btn-export" onclick="validateAndDownload()">💾 تحميل ملف JSON النهائي</button>
                         <button onclick="document.getElementById('fileInput').click()">📥
                             رفع
@@ -72,17 +119,8 @@
                             onchange="importJSON(event)">
                     </div>
                 </div>
-
-                <div class="section">
-                    <h3>🎨 الألوان</h3>
-                    <div class="grid" id="colorPickerContainer"></div>
-                    <h3>🖼 الصور</h3>
-                    <div class="grid" id="imageContainer"></div>
-                </div>
             </div>
             <div class="left">
-
-
                 <div class="section">
                     <h3>👁 معاينة قائمة الأرقام (الصفحة الرئيسية)</h3>
                     <div class="gridPreviewBox">

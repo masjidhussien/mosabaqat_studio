@@ -31,7 +31,7 @@
         <button id="email-login">تسجيل الدخول</button>
     </div>
 
-    <div class="content">
+    <div class="content hidden">
         <h2>مؤسس المسابقات التّربويّة</h2>
         <div class="sections">
             <div class="right">
@@ -47,7 +47,7 @@
                     <div style="display:flex; flex-direction: column; gap:10px;">
                         <div style="display:flex; gap:10px;">
                             <select id="nashatSelect" style="flex:1; padding:10px; border-radius:5px;"
-                                onchange="toggleNashatInput(this.value)">
+                                onchange="toggleNashatInput(this)">
                                 <option value="new">➕ إنشاء نشاط جديد...</option>
                             </select>
                             <button style="display: none;" type="button" class="btn-del" id="deleteBtn" onclick="deleteExistingQuiz()">🗑️ حذف
@@ -88,17 +88,17 @@
                         </div>
                         <div class="option" id="tpq">
                             <label for="time-per-question">الوقت للسؤال الواحد (ث)</label>
-                            <input type="number" min="0" value="45" id="time-per-question" placeholder="أدخل الوقت بالثواني">
+                            <input type="number" min="0" value="45" default="45" id="time-per-question" placeholder="أدخل الوقت بالثواني">
                         </div>
 
                         <div class="option" id="tqt">
                             <label for="tranferable-question-time">الوقت للسؤال بعد نقله (ث)</label>
-                            <input type="number" min="0" value="10" id="tranferable-question-time" placeholder="أدخل الوقت بالثواني">
+                            <input type="number" min="0" value="10" default="10" id="tranferable-question-time" placeholder="أدخل الوقت بالثواني">
                         </div>
 
                         <div class="option" id="ttr">
                             <label for="time-to-return">الوقت للرجوع بعد إظهار الإجابة (ث)</label>
-                            <input type="number" min="0" value="3" id="time-to-return" placeholder="أدخل الوقت بالثواني">
+                            <input type="number" min="0" value="3" default="3" id="time-to-return" placeholder="أدخل الوقت بالثواني">
                         </div>
                     </div>
                 </div>
